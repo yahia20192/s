@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YK | Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="\css\dash.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h4 class="greeting">Logged in as: <span class="username"><%= username %></span></h4>
+            <button id="logout">Logout</button>
+        </div>
+    </nav>
+
+    <div id="container">
+        <hr>
+        <div id="errbox">
+            <p id="err">Error: </p>
+        </div>
+        <div id="bal" class="bal">
+            <h2 class="balance" id="balance">Your Balance: <%= bal %> $</h2>
+        </div>
+       
+        <div class="buttons" id="buttons">
+            <button class="send" id="send">Send Money</button>
+        </div>
+
+        <div class="form-popup" id="myform">
+            <div class="form-container">
+                <h1 style="text-align:center; font-family: 'Trebuchet MS', Helvetica, sans-serif;">Send money</h1>
+
+                <label for="ID"><b>User ID</b></label>
+                <input type="number" id="id" min='16' placeholder="Enter User id" name="id" required>
+
+                <label for="amount"><b>Amount</b></label>
+                <input type="number" id="amount" placeholder="Enter the amount you want to send" name="amount" required>
+
+                <button type="submit" id="transfer" class="btn">Transfer</button>
+                <button type="button" class="btn cancel" id="beb">Cancel</button>
+            </div>
+        </div>
+    <script>
+        let id = document.getElementById("id").value
+        let amount = document.getElementById("amount").value
+        
+        document.getElementById("transfer").addEventListener("click", (e) => {
+            
+            console.log(id, amount)
+            fetch(`<%= link %>send`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id,
+                    amount 
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                
+                if(data.err !== "undefined") {
+                    document.getElementById("myform").style.display = "none"
+                    document.getElementById("err").textContent = "Error: " + data.err
+                    document.getElementById("errbox").style.display = "block";
+                }
+                document.getElementById("myform").style.display = "none"
+                if(data.bal) document.getElementById("balance").textContent = "Your balance: " + data.bal + "$"
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+
+        })
+        document.getElementById("send").addEventListener("click", () => {
+           // id.value = ""
+            //amount.value =  ""
+            
+            let form = document.getElementById("myform");
+            if (form.style.display === "none") {
+                form.style.display = "flex";
+            } else {
+                form.style.display = "none";
+            }
+        });
+        document.getElementById("beb").addEventListener("click", () => {
+            let form = document.getElementById("myform");
+            form.style.display = "none";
+        });
+    </script>
+</body>
+</html>

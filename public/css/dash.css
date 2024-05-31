@@ -1,0 +1,138 @@
+body {
+    background-color: #2d3142;
+  
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+#container {
+    display: block;
+    /* position: absosslute; */
+    margin-top: 40px;
+}
+
+#errbox {
+  display:none;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  border: 1px solid #2d3440;
+  background-color: #2d3440;
+  border-left: 5px solid red;
+  border-radius: 10px;
+}
+
+#errbox p {
+  color:white;
+  text-align: center;
+}
+
+.navbar {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+  margin-bottom: 5px;
+
+}
+
+.navbar button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar button:hover {
+  text-decoration: underline;
+}
+
+.balance {
+    color: white;
+    text-align: center;
+    top: 50px;
+}
+
+.buttons button {
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    border: 2px solid #4f5d75;
+    background-color: #4f5d75;
+    display: inline-block;
+    margin-left: 40px;
+}
+#send {
+    display: block; /* or inline-block */
+    margin: 0 auto;
+}
+.buttons button:hover {
+    background-color: #4f5d80;
+    cursor: pointer;
+}
+.form-popup {
+  display: none;
+    color: white;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  position: fixed;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+}
+
+.form-container {
+  width: 300px; /* Define a width */
+  padding: 10px;
+  background-color: #2d3142;
+  border-radius: 16px;
+    color: white;
+}
+
+
+
+.form-container input[type=number] {
+    color:white;
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #0a0908;
+    border-radius: 10px;
+}
+
+.form-container input[type=number]:focus {
+  background-color: #4f5d75;
+  outline: none;
+  color:white;
+}
+
+.form-container .btn {
+  background-color: #2f395d;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+  border-radius: 10px;
+}
+
+.form-container .cancel {
+  background-color: #5e503f;
+  border-radius: 10px;
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
